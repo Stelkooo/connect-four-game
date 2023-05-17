@@ -1,13 +1,16 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import Logo from 'public/images/logo.svg';
-import PillButton from './pill-button/pill-button.component';
+import PillButton from '../pill-button/pill-button.component';
 
 export default function Header() {
+  const router = useRouter();
+
   const menuOnClickHandler = () => {
-    console.log('Menu');
+    router.push('');
   };
 
   const restartOnClickHandler = () => {
