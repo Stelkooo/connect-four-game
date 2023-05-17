@@ -1,7 +1,8 @@
-import MainMenu from '@/components/common/main-menu/main-menu.component';
 import Image from 'next/image';
 
 import Logo from 'public/images/logo.svg';
+
+import MainMenu from '@/components/common/main-menu/main-menu.component';
 
 export default function Home() {
   return (
