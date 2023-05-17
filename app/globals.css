@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .heading-large,
+  .heading-medium,
+  .heading-small,
+  .heading-extra-small {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .heading-large {
+    font-size: 56px;
+    line-height: 71px;
+  }
+  .heading-medium {
+    font-size: 24px;
+    line-height: 31px;
+  }
+  .heading-small {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .heading-extra-small {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: black;
+    --tw-text-opacity: 0.66;
+  }
+}
