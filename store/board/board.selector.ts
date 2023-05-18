@@ -8,7 +8,7 @@ export const selectBoard = createSelector(
   (board) => board.board
 );
 
-export const selectBoardColumnByIndex = createSelector(
-  [selectBoardReducer, (state, index) => index],
-  (board, index) => board.board[index]
+export const selectWinningCounters = createSelector(
+  [selectBoardReducer],
+  (board) => board.winningCounters
 );

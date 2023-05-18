@@ -6,7 +6,11 @@ import RedMarker from 'public/images/marker-red.svg';
 import YellowMarker from 'public/images/marker-yellow.svg';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addCounter, resetBoard } from '@/store/board/board.reducer';
+import {
+  addCounter,
+  resetBoard,
+  setWinningCounters,
+} from '@/store/board/board.reducer';
 import {
   TPlayers,
   addPlayerWin,
@@ -40,6 +44,14 @@ export default function ColButtonGrid() {
         ) {
           dispatch(setWinner(prevPlayer));
           dispatch(addPlayerWin(prevPlayer));
+          dispatch(
+            setWinningCounters([
+              { column: c, row: r },
+              { column: c, row: r + 1 },
+              { column: c, row: r + 2 },
+              { column: c, row: r + 3 },
+            ])
+          );
         }
       }
     }
@@ -57,6 +69,14 @@ export default function ColButtonGrid() {
         ) {
           dispatch(setWinner(prevPlayer));
           dispatch(addPlayerWin(prevPlayer));
+          dispatch(
+            setWinningCounters([
+              { column: c, row: r },
+              { column: c + 1, row: r },
+              { column: c + 2, row: r },
+              { column: c + 3, row: r },
+            ])
+          );
         }
       }
     }
@@ -74,6 +94,14 @@ export default function ColButtonGrid() {
         ) {
           dispatch(setWinner(prevPlayer));
           dispatch(addPlayerWin(prevPlayer));
+          dispatch(
+            setWinningCounters([
+              { column: c, row: r },
+              { column: c + 1, row: r + 1 },
+              { column: c + 2, row: r + 2 },
+              { column: c + 3, row: r + 3 },
+            ])
+          );
         }
       }
     }
@@ -90,6 +118,14 @@ export default function ColButtonGrid() {
         ) {
           dispatch(setWinner(prevPlayer));
           dispatch(addPlayerWin(prevPlayer));
+          dispatch(
+            setWinningCounters([
+              { column: c, row: r },
+              { column: c - 1, row: r + 1 },
+              { column: c - 2, row: r + 2 },
+              { column: c - 3, row: r + 3 },
+            ])
+          );
         }
       }
     }
