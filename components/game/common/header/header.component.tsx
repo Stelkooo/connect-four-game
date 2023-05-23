@@ -9,7 +9,7 @@ import {
   setPlayerTurn,
   resetPlayerWins,
 } from '@/store/players/players.reducer';
-import { resetBoard } from '@/store/board/board.reducer';
+import { resetBoard, resetCountdown } from '@/store/board/board.reducer';
 
 import Logo from 'public/images/logo.svg';
 import PillButton from '../pill-button/pill-button.component';
@@ -27,6 +27,7 @@ export default function Header() {
     dispatch(resetPlayerWins());
     dispatch(setStartingPlayer('red'));
     dispatch(setPlayerTurn('red'));
+    dispatch(resetCountdown());
   };
   return (
     <header className="flex items-center justify-between">

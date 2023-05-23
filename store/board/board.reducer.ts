@@ -29,6 +29,7 @@ type Board = [Column, Column, Column, Column, Column, Column, Column];
 type InitialState = {
   board: Board;
   winningCounters: TWinnerCounters;
+  countdown: number;
 };
 
 const initBoard: Board = [
@@ -44,6 +45,7 @@ const initBoard: Board = [
 const BOARD_INITIAL_VALUE: InitialState = {
   board: initBoard,
   winningCounters: initWinningCounters,
+  countdown: 15,
 };
 
 export const boardSlice = createSlice({
@@ -72,13 +74,59 @@ export const boardSlice = createSlice({
         board: newBoard as Board,
       };
     },
+    addRandomCounter: (state, action: PayloadAction<TPlayers>) => {
+      // adds a counter
+      // picks random column
+      // checks to see if empty space
+      // if not runs again
+      let randomSlot: { column: number; row: number } = { column: 0, row: 0 };
+      let randomSlotNotFound = true;
+      while (randomSlotNotFound) {
+        const randomColumn = Math.floor(Math.random() * 7);
+        for (
+          let index = 0;
+          index < state.board[randomColumn].length;
+          index += 1
+        ) {
+          const row = state.board[randomColumn][index];
+          if (row === null) {
+            randomSlot = { column: randomColumn, row: index };
+            randomSlotNotFound = false;
+            break;
+          }
+        }
+      }
+      const modifiedBoard = state.board.map((col, colIndex) =>
+        colIndex === randomSlot.column
+          ? col.map((row, rowIndex) =>
+              rowIndex === randomSlot.row ? action.payload : row
+            )
+          : col
+      );
+      return {
+        ...state,
+        board: modifiedBoard as Board,
+      };
+    },
     setWinningCounters: (state, action: PayloadAction<TWinnerCounters>) => {
       return { ...state, winningCounters: action.payload };
+    },
+    minusCountdown: (state) => {
+      return { ...state, countdown: state.countdown - 1 };
+    },
+    resetCountdown: (state) => {
+      return { ...state, countdown: 15 };
     },
   },
 });
 
-export const { resetBoard, addCounter, setWinningCounters } =
-  boardSlice.actions;
+export const {
+  resetBoard,
+  addCounter,
+  addRandomCounter,
+  setWinningCounters,
+  minusCountdown,
+  resetCountdown,
+} = boardSlice.actions;
 
 export const boardReducer = boardSlice.reducer;

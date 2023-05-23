@@ -12,3 +12,8 @@ export const selectWinningCounters = createSelector(
   [selectBoardReducer],
   (board) => board.winningCounters
 );
+
+export const selectCountdown = createSelector(
+  [selectBoardReducer],
+  (board) => board.countdown
+);

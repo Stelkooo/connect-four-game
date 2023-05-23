@@ -1,10 +1,26 @@
+'use client';
+
 import Image from 'next/image';
+
+import { useState, useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import {
+  addRandomCounter,
+  minusCountdown,
+  resetCountdown,
+} from '@/store/board/board.reducer';
+import {
+  TPlayer,
+  TPlayers,
+  togglePlayerTurn,
+} from '@/store/players/players.reducer';
+import { selectCountdown } from '@/store/board/board.selector';
+
 import RedTurnBackground from 'public/images/turn-background-red.svg';
 import YellowTurnBackground from 'public/images/turn-background-yellow.svg';
-import { TPlayer, TPlayers } from '@/store/players/players.reducer';
 
 type Props = {
   playerTurn: TPlayers;
@@ -17,6 +33,30 @@ export default function PlayerTurn({
   redPlayer,
   yellowPlayer,
 }: Props) {
+  const dispatch = useAppDispatch();
+
+  const countdown = useAppSelector(selectCountdown);
+  const [isRunning, setIsRunning] = useState(true);
+
+  useEffect(() => {
+    let interval: NodeJS.Timer;
+
+    if (isRunning) {
+      interval = setInterval(() => dispatch(minusCountdown()), 1000);
+    }
+
+    if (countdown === 0) {
+      dispatch(addRandomCounter(playerTurn));
+      dispatch(togglePlayerTurn());
+      dispatch(resetCountdown());
+    }
+
+    return () => clearInterval(interval);
+  }, [countdown]);
+
+  useEffect(() => {
+    dispatch(resetCountdown());
+  }, [dispatch, playerTurn]);
   return (
     <motion.div
       className="absolute left-1/2 top-[94%] z-50 grid -translate-x-1/2"
@@ -33,7 +73,7 @@ export default function PlayerTurn({
           {playerTurn === 'red' ? redPlayer.name : yellowPlayer.name}&apos;s
           Turn
         </p>
-        <h1 className="heading-large lowercase">14s</h1>
+        <h1 className="heading-large lowercase">{countdown}s</h1>
       </div>
     </motion.div>
   );
