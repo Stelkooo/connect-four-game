@@ -1,16 +1,19 @@
 import Image from 'next/image';
 
+import { motion } from 'framer-motion';
+
 import RedPlayer from 'public/images/player-one.svg';
 import YellowPlayer from 'public/images/player-two.svg';
 
 import { TPlayer } from '@/store/players/players.reducer';
+import Wins from './wins/wins.component';
 
 type Props = {
   player: TPlayer;
 };
 
 export default function ScoreCard({ player }: Props) {
-  const { id, name, wins } = player;
+  const { id, name, wins, prevWins } = player;
   return (
     <div
       className={`relative flex flex-col items-center rounded-[20px] border-3 border-black bg-white py-2 shadow-brand ${
@@ -20,7 +23,7 @@ export default function ScoreCard({ player }: Props) {
       } md:justify-between md:px-11 md:py-3 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:flex-col lg:px-6 lg:pb-4 lg:pt-11 lg:text-center`}
     >
       <span className="md:heading-small uppercase lg:w-24">{name}</span>
-      <span className="md:heading-large text-[2rem]/10 font-bold">{wins}</span>
+      <Wins wins={wins} prevWins={prevWins} />
       <Image
         src={id === 'red' ? RedPlayer : YellowPlayer}
         alt="Player Icon"

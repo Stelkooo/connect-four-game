@@ -28,7 +28,7 @@ export default function Button({
       onClick={onClickFunc}
       className={`${styleConfig[color].bg} inline-flex w-full ${
         centered ? 'justify-center' : 'justify-between'
-      } heading-medium items-center rounded-[1.25rem] border-3 border-black p-5 shadow-brand hover:border-purple hover:shadow-purple`}
+      } heading-medium items-center rounded-[1.25rem] border-3 border-black p-5 shadow-brand transition-all hover:border-purple hover:shadow-purple`}
     >
       {children}
     </button>

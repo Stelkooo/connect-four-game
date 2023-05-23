@@ -6,6 +6,7 @@ export type TPlayer = {
   id: TPlayers;
   name: string;
   wins: number;
+  prevWins: number;
 };
 
 type InitialState = {
@@ -21,11 +22,13 @@ const PLAYERS_INITIAL_VALUE: InitialState = {
     id: 'red',
     name: 'Player 1',
     wins: 0,
+    prevWins: 0,
   },
   yellowPlayer: {
     id: 'yellow',
     name: 'Player 2',
     wins: 0,
+    prevWins: 0,
   },
   playerTurn: 'red',
   startingPlayer: 'red',
@@ -55,29 +58,44 @@ export const playersSlice = createSlice({
       return { ...state, startingPlayer: action.payload };
     },
     addPlayerWin: (state, action: PayloadAction<TPlayers>) => {
+      const addWin = (player: TPlayers, wins: number) => {
+        return action.payload === player ? wins + 1 : wins;
+      };
+
+      const addPrevWin = (player: TPlayers, wins: number, prevWins: number) => {
+        if (action.payload === player) {
+          return wins === 0 ? 0 : wins;
+        }
+        return prevWins;
+      };
+
       return {
         ...state,
         redPlayer: {
           ...state.redPlayer,
-          wins:
-            action.payload === 'red'
-              ? state.redPlayer.wins + 1
-              : state.redPlayer.wins,
+          wins: addWin('red', state.redPlayer.wins),
+          prevWins: addPrevWin(
+            'red',
+            state.redPlayer.wins,
+            state.redPlayer.prevWins
+          ),
         },
         yellowPlayer: {
           ...state.yellowPlayer,
-          wins:
-            action.payload === 'yellow'
-              ? state.yellowPlayer.wins + 1
-              : state.yellowPlayer.wins,
+          wins: addWin('yellow', state.yellowPlayer.wins),
+          prevWins: addPrevWin(
+            'yellow',
+            state.yellowPlayer.wins,
+            state.yellowPlayer.prevWins
+          ),
         },
       };
     },
     resetPlayerWins: (state) => {
       return {
         ...state,
-        redPlayer: { ...state.redPlayer, wins: 0 },
-        yellowPlayer: { ...state.yellowPlayer, wins: 0 },
+        redPlayer: { ...state.redPlayer, wins: 0, prevWins: 0 },
+        yellowPlayer: { ...state.yellowPlayer, wins: 0, prevWins: 0 },
       };
     },
     setWinner: (state, action: PayloadAction<TPlayers>) => {

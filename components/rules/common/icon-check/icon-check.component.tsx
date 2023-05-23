@@ -30,14 +30,14 @@ export default function IconCheck() {
           <g id="icon-check">
             <circle
               id="Oval-Copy-37"
-              className="fill-black group-hover/check:fill-purple"
+              className="fill-black transition-all group-hover/check:fill-purple"
               cx="35"
               cy="35"
               r="35"
             />
             <circle
               id="Oval-Copy-38"
-              className="fill-black group-hover/check:fill-purple"
+              className="fill-black transition-all group-hover/check:fill-purple"
               cx="35"
               cy="40"
               r="35"

@@ -1,4 +1,8 @@
+'use client';
+
 import Image from 'next/image';
+
+import { motion } from 'framer-motion';
 
 import { TCounter } from '@/store/board/board.reducer';
 
@@ -13,11 +17,15 @@ type Props = {
 
 export default function Counter({ player, colIndex, rowIndex }: Props) {
   return (
-    <picture
+    <motion.picture
       style={{
         gridRowStart: 6 - rowIndex,
         gridColumnStart: 1 + colIndex,
       }}
+      initial={{ opacity: 0, y: '-100vh' }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: 'tween', duration: 1 }}
+      exit={{ opacity: 0, y: '100vh' }}
     >
       <source
         media="(min-width:768px)"
@@ -32,6 +40,6 @@ export default function Counter({ player, colIndex, rowIndex }: Props) {
         alt={`${player} counter at column ${colIndex}, row ${rowIndex}`}
         className="w-full"
       />
-    </picture>
+    </motion.picture>
   );
 }
