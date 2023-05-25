@@ -1,13 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import { useAppDispatch } from '@/store/hooks';
 import {
   setStartingPlayer,
   setPlayerTurn,
   resetPlayerWins,
+  resetWinner,
 } from '@/store/players/players.reducer';
 import {
   resetBoard,
@@ -20,7 +20,6 @@ import Logo from 'public/images/logo.svg';
 import PillButton from '../pill-button/pill-button.component';
 
 export default function Header() {
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const menuOnClickHandler = () => {
@@ -34,6 +33,7 @@ export default function Header() {
     dispatch(setStartingPlayer('red'));
     dispatch(setPlayerTurn('red'));
     dispatch(resetCountdown());
+    dispatch(resetWinner());
   };
   return (
     <header className="flex items-center justify-between">
