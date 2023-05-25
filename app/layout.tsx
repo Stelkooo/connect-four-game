@@ -1,8 +1,7 @@
 import './globals.css';
 import { Space_Grotesk } from 'next/font/google';
 
-import { store } from '@/store/store';
-import { Provider } from 'react-redux';
+import Providers from '@/store/provider';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -16,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Provider store={store}>
+    <Providers>
       <html lang="en">
         <body className={spaceGrotesk.className}>{children}</body>
       </html>
-    </Provider>
+    </Providers>
   );
 }
