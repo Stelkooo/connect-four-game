@@ -18,7 +18,7 @@ export default function BackgroundHighlight() {
   };
   return (
     <div
-      className={`absolute -bottom-[100%] left-1/2 z-0 h-full w-screen -translate-x-1/2 rounded-t-[60px] transition-colors delay-1000 ${getBgColor()}`}
+      className={`absolute -bottom-full left-1/2 z-0 h-full w-screen -translate-x-1/2 rounded-t-[60px] transition-colors delay-1000 lg:-bottom-[calc(100%-2rem)] ${getBgColor()}`}
     />
   );
 }

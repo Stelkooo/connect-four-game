@@ -22,7 +22,7 @@ export default function Page() {
   const isPaused = useAppSelector(selectIsPaused);
   return (
     <div className="h-full overflow-hidden bg-light-purple">
-      <div className="mx-auto grid max-w-[335px] gap-y-12 pt-4 md:max-w-[632px]">
+      <div className="mx-auto grid max-w-[335px] gap-y-12 pt-4 md:max-w-[632px] lg:pt-12">
         <Header />
         <main className="relative grid grid-cols-2 gap-x-5 gap-y-12 md:gap-x-10 md:gap-y-8">
           <ScoreCard player={redPlayer} />

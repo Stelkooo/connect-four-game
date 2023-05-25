@@ -70,11 +70,19 @@ export default function PlayerTurn({
         alt=""
       />
       <div className="absolute top-9 w-full text-center md:top-10">
-        <p className="uppercase">
+        <p
+          style={{ color: playerTurn === 'red' ? 'white' : 'black' }}
+          className="uppercase"
+        >
           {playerTurn === 'red' ? redPlayer.name : yellowPlayer.name}&apos;s
           Turn
         </p>
-        <h1 className="heading-large lowercase">{countdown}s</h1>
+        <h1
+          style={{ color: playerTurn === 'red' ? 'white' : 'black' }}
+          className="heading-large lowercase"
+        >
+          {countdown}s
+        </h1>
       </div>
     </motion.div>
   );
