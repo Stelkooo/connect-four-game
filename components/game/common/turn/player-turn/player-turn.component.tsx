@@ -11,13 +11,14 @@ import {
   addRandomCounter,
   minusCountdown,
   resetCountdown,
+  toggleIsRunning,
 } from '@/store/board/board.reducer';
 import {
   TPlayer,
   TPlayers,
   togglePlayerTurn,
 } from '@/store/players/players.reducer';
-import { selectCountdown } from '@/store/board/board.selector';
+import { selectCountdown, selectIsRunning } from '@/store/board/board.selector';
 
 import RedTurnBackground from 'public/images/turn-background-red.svg';
 import YellowTurnBackground from 'public/images/turn-background-yellow.svg';
@@ -36,7 +37,7 @@ export default function PlayerTurn({
   const dispatch = useAppDispatch();
 
   const countdown = useAppSelector(selectCountdown);
-  const [isRunning, setIsRunning] = useState(true);
+  const isRunning = useAppSelector(selectIsRunning);
 
   useEffect(() => {
     let interval: NodeJS.Timer;
@@ -52,7 +53,7 @@ export default function PlayerTurn({
     }
 
     return () => clearInterval(interval);
-  }, [countdown]);
+  }, [countdown, isRunning]);
 
   useEffect(() => {
     dispatch(resetCountdown());

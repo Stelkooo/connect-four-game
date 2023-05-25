@@ -9,7 +9,12 @@ import {
   setPlayerTurn,
   resetPlayerWins,
 } from '@/store/players/players.reducer';
-import { resetBoard, resetCountdown } from '@/store/board/board.reducer';
+import {
+  resetBoard,
+  resetCountdown,
+  toggleIsPaused,
+  toggleIsRunning,
+} from '@/store/board/board.reducer';
 
 import Logo from 'public/images/logo.svg';
 import PillButton from '../pill-button/pill-button.component';
@@ -19,7 +24,8 @@ export default function Header() {
   const dispatch = useAppDispatch();
 
   const menuOnClickHandler = () => {
-    router.push('');
+    dispatch(toggleIsPaused());
+    dispatch(toggleIsRunning());
   };
 
   const restartOnClickHandler = () => {

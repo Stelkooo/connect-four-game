@@ -30,6 +30,8 @@ type InitialState = {
   board: Board;
   winningCounters: TWinnerCounters;
   countdown: number;
+  isRunning: boolean;
+  isPaused: boolean;
 };
 
 const initBoard: Board = [
@@ -46,6 +48,8 @@ const BOARD_INITIAL_VALUE: InitialState = {
   board: initBoard,
   winningCounters: initWinningCounters,
   countdown: 15,
+  isRunning: true,
+  isPaused: false,
 };
 
 export const boardSlice = createSlice({
@@ -117,6 +121,12 @@ export const boardSlice = createSlice({
     resetCountdown: (state) => {
       return { ...state, countdown: 15 };
     },
+    toggleIsRunning: (state) => {
+      return { ...state, isRunning: !state.isRunning };
+    },
+    toggleIsPaused: (state) => {
+      return { ...state, isPaused: !state.isPaused };
+    },
   },
 });
 
@@ -127,6 +137,8 @@ export const {
   setWinningCounters,
   minusCountdown,
   resetCountdown,
+  toggleIsRunning,
+  toggleIsPaused,
 } = boardSlice.actions;
 
 export const boardReducer = boardSlice.reducer;

@@ -17,3 +17,13 @@ export const selectCountdown = createSelector(
   [selectBoardReducer],
   (board) => board.countdown
 );
+
+export const selectIsRunning = createSelector(
+  [selectBoardReducer],
+  (board) => board.isRunning
+);
+
+export const selectIsPaused = createSelector(
+  [selectBoardReducer],
+  (board) => board.isPaused
+);
