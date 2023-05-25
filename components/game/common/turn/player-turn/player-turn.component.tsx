@@ -60,7 +60,7 @@ export default function PlayerTurn({
   }, [dispatch, playerTurn]);
   return (
     <motion.div
-      className="absolute left-1/2 top-[94%] z-50 grid -translate-x-1/2"
+      className="absolute left-1/2 top-[94%] z-50 grid -translate-x-1/2 lg:top-[93%]"
       // initial={{ opacity: 0 }}
       // animate={{ opacity: 1, transition: { delay: 1 } }}
       // exit={{ opacity: 0, y: '100vh' }}
