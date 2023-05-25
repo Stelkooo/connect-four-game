@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 
@@ -11,7 +11,6 @@ import {
   addRandomCounter,
   minusCountdown,
   resetCountdown,
-  toggleIsRunning,
 } from '@/store/board/board.reducer';
 import {
   TPlayer,
@@ -61,9 +60,9 @@ export default function PlayerTurn({
   return (
     <motion.div
       className="absolute left-1/2 top-[94%] z-50 grid -translate-x-1/2 lg:top-[93%]"
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1, transition: { delay: 1 } }}
-      // exit={{ opacity: 0, y: '100vh' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 1 } }}
+      exit={{ opacity: 0, y: '100vh' }}
     >
       <Image
         src={playerTurn === 'red' ? RedTurnBackground : YellowTurnBackground}

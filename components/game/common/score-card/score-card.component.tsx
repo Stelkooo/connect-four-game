@@ -1,7 +1,5 @@
 import Image from 'next/image';
 
-import { motion } from 'framer-motion';
-
 import RedPlayer from 'public/images/player-one.svg';
 import YellowPlayer from 'public/images/player-two.svg';
 

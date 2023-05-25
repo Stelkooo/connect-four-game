@@ -3,11 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import {
-  addCounter,
-  resetBoard,
-  setWinningCounters,
-} from '@/store/board/board.reducer';
+import { addCounter, setWinningCounters } from '@/store/board/board.reducer';
 import {
   addPlayerWin,
   setWinner,

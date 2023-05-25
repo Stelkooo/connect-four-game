@@ -48,7 +48,7 @@ const BOARD_INITIAL_VALUE: InitialState = {
   board: initBoard,
   winningCounters: initWinningCounters,
   countdown: 30,
-  isRunning: false,
+  isRunning: true,
   isPaused: false,
 };
 

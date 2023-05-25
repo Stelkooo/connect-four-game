@@ -1,37 +1,16 @@
-'use client';
+import Image from 'next/image';
 
-import { AnimatePresence } from 'framer-motion';
+import Logo from 'public/images/logo.svg';
 
-import { useAppSelector } from '@/store/hooks';
-import {
-  selectRedPlayer,
-  selectYellowPlayer,
-} from '@/store/players/players.selector';
-import { selectIsPaused } from '@/store/board/board.selector';
+import MainMenu from '@/components/common/main-menu/main-menu.component';
 
-import BackgroundHighlight from '@/components/game/common/background-highlight/background-highlight.component';
-import Board from '@/components/game/common/board/board.component';
-import Header from '@/components/game/common/header/header.component';
-import ScoreCard from '@/components/game/common/score-card/score-card.component';
-import PauseMenu from '@/components/game/common/pause-menu/pause-menu.component';
-
-export default function Page() {
-  const redPlayer = useAppSelector(selectRedPlayer);
-  const yellowPlayer = useAppSelector(selectYellowPlayer);
-
-  const isPaused = useAppSelector(selectIsPaused);
+export default function Home() {
   return (
-    <div className="h-full overflow-hidden bg-light-purple">
-      <div className="mx-auto grid max-w-[335px] gap-y-12 pt-4 md:max-w-[632px] lg:pt-12">
-        <Header />
-        <main className="relative grid grid-cols-2 gap-x-5 gap-y-12 md:gap-x-10 md:gap-y-8">
-          <ScoreCard player={redPlayer} />
-          <ScoreCard player={yellowPlayer} />
-          <Board />
-          <BackgroundHighlight />
-        </main>
+    <main className="grid h-full content-center justify-items-center bg-light-purple sm:bg-purple">
+      <div className="relative flex w-full max-w-xs flex-col items-center gap-y-20 bg-light-purple sm:max-w-lg sm:rounded-[40px] sm:border-3 sm:border-black sm:px-10 sm:py-16 sm:shadow-brand">
+        <Image src={Logo} alt="" className="relative" />
+        <MainMenu />
       </div>
-      <AnimatePresence>{isPaused ? <PauseMenu /> : null}</AnimatePresence>
-    </div>
+    </main>
   );
 }
