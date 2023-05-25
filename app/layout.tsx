@@ -1,5 +1,3 @@
-'use client';
-
 import './globals.css';
 import { Space_Grotesk } from 'next/font/google';
 
