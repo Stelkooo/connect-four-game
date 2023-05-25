@@ -47,8 +47,8 @@ const initBoard: Board = [
 const BOARD_INITIAL_VALUE: InitialState = {
   board: initBoard,
   winningCounters: initWinningCounters,
-  countdown: 15,
-  isRunning: true,
+  countdown: 30,
+  isRunning: false,
   isPaused: false,
 };
 
@@ -119,7 +119,7 @@ export const boardSlice = createSlice({
       return { ...state, countdown: state.countdown - 1 };
     },
     resetCountdown: (state) => {
-      return { ...state, countdown: 15 };
+      return { ...state, countdown: 30 };
     },
     toggleIsRunning: (state) => {
       return { ...state, isRunning: !state.isRunning };
